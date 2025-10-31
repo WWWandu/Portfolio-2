@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wilson W. Wandu — Tech Strategist & BI Innovator</title>
+  <meta name="description" content="Wilson W. Wandu — Tech Strategist | BI & Automation Innovator | Storytelling That Drives Action" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg-1:#07070a;
+      --accent-from: #5b7dff;
+      --accent-to: #9b5de5;
+      --muted: rgba(255,255,255,0.72);
+      --muted-2: rgba(255,255,255,0.55);
+      --card-radius: 14px;
+      --max-width: 1100px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      color:#e9eefc;
+      background:
+        radial-gradient(900px 360px at -15% -15%, rgba(91,125,255,0.06), transparent 6%),
+        linear-gradient(180deg, #06070b 0%, #0b0d12 40%, #0e0f16 100%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding-bottom:80px;
+    }
+
+    /* animated soft gradient overlay */
+    .animated-bg{
+      position:fixed; inset:0; z-index:0; pointer-events:none;
+      background: linear-gradient(120deg, rgba(91,125,255,0.05), rgba(155,93,229,0.04));
+      mix-blend-mode: overlay;
+      animation: drift 12s ease-in-out infinite;
+    }
+    @keyframes drift{
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-6px) rotate(0.4deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+
+    header{
+      position:sticky; top:0; z-index:30;
+      background: linear-gradient(180deg, rgba(8,9,15,0.64), rgba(8,9,15,0.4));
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(255,255,255,0.02);
+      padding:10px 18px;
+    }
+    .nav-inner{
+      max-width:var(--max-width); margin:0 auto; display:flex;
+      align-items:center; justify-content:space-between; gap:12px;
+    }
+    .brand{ display:flex; align-items:center; gap:12px; }
+    .brand img{ width:44px; height:44px; border-radius:10px; object-fit:cover; border:1px solid rgba(255,255,255,0.03); }
+    .brand h1{ margin:0; font-size:15px; font-weight:700; letter-spacing:0.2px; color:#fff; }
+    nav a{ color:var(--muted); text-decoration:none; margin-left:12px; font-weight:600; font-size:14px; transition:color .15s ease, transform .12s ease; }
+    nav a:hover{ color:#fff; transform:translateY(-3px); }
+
+    main{ max-width:var(--max-width); margin:28px auto; padding:0 18px; position:relative; z-index:5; }
+
+    /* HERO */
+    .hero{ display:flex; gap:26px; align-items:center; margin-bottom:22px; }
+    .hero-left{ flex:1; min-width:280px;}
+    .hero-right{ width:160px; height:160px; border-radius:16px; overflow:hidden; box-shadow: 0 18px 44px rgba(27,22,60,0.45); border:1px solid rgba(255,255,255,0.04); }
+    .hero-right img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    .tagline{ color:#e9eefc; margin:6px 0 8px; font-weight:600; font-size:14px; }
+    .lead{ font-size:22px; margin:0 0 8px; font-weight:700; color:#fff; line-height:1.15; }
+    .bio{ color:var(--muted-2); margin:0; font-size:15px; line-height:1.5; }
+
+    .cta{
+      margin-top:12px;
+      display:flex; gap:10px; align-items:center;
+    }
+    .btn{
+      display:inline-block; padding:10px 14px; border-radius:10px; text-decoration:none; font-weight:700;
+      color:#fff; background: linear-gradient(90deg,var(--accent-from),var(--accent-to)); border:none;
+      box-shadow: 0 8px 24px rgba(89,78,220,0.12);
+    }
+    .btn.secondary{ background:transparent; color:var(--muted); border:1px solid rgba(255,255,255,0.04); }
+
+    /* sections */
+    section{ margin-top:18px; padding:18px; border-radius:var(--card-radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+      border:1px solid rgba(255,255,255,0.02); box-shadow: 0 8px 30px rgba(8,9,16,0.45);
+      opacity:0; transform: translateY(12px); transition: opacity .6s ease, transform .6s ease; will-change:transform,opacity;
+    }
+    section.visible{ opacity:1; transform:translateY(0); }
+
+    .section-title{ display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+    .accent{ height:6px; width:84px; border-radius:8px; background: linear-gradient(90deg,var(--accent-from),var(--accent-to)); box-shadow: 0 8px 24px rgba(83,68,220,0.08); }
+
+    .small{ color:var(--muted-2); font-size:14px; }
+    .skills{ display:flex; flex-wrap:wrap; gap:10px; margin-top:8px; }
+    .skill{ padding:8px 12px; border-radius:10px; font-weight:600; font-size:13px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.02); color:#fff; }
+
+    /* projects */
+    .projects .project{ margin-bottom:18px; }
+    .project-title{ font-weight:700; margin-bottom:6px; }
+    .project p{ margin:0 0 8px 0; color:var(--muted-2); }
+
+    .video-wrap{ width:640px; height:360px; max-width:100%; border-radius:10px; overflow:hidden; background:#000; box-shadow:0 10px 34px rgba(13,11,30,0.6); border:1px solid rgba(255,255,255,0.03); }
+    video{ display:block; width:100%; height:100%; background:#000; }
+
+    sub{ color:var(--muted-2); font-size:13px; display:block; margin-top:8px; }
+
+    /* experience */
+    .exp-item{ padding:12px 0; border-bottom:1px dashed rgba(255,255,255,0.03); }
+    .exp-item:last-child{ border-bottom:none; }
+    .exp-item strong{ display:block; color:#fff; }
+
+    /* contact */
+    .contact-grid{ display:flex; flex-wrap:wrap; gap:12px; margin-top:8px; }
+    .contact-card{ flex:1 1 220px; padding:12px; border-radius:10px; background: rgba(255,255,255,0.01); border:1px solid rgba(255,255,255,0.02); color:var(--muted-2); }
+
+    /* footer */
+    .footer{ max-width:var(--max-width); margin:22px auto 80px; padding:0 18px; display:flex; gap:18px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; color:var(--muted-2); }
+    .stats-card img{ border-radius:12px; border:1px solid rgba(255,255,255,0.03); }
+
+    /* back to top */
+    .top-btn{
+      position:fixed; right:18px; bottom:22px; z-index:60; display:flex; align-items:center; gap:8px;
+      background: linear-gradient(90deg,var(--accent-from),var(--accent-to)); color:#fff; padding:10px 12px; border-radius:999px; box-shadow:0 14px 36px rgba(83,68,220,0.12); text-decoration:none; font-weight:700;
+    }
+    .top-btn.hide{ display:none; }
+
+    /* responsive */
+    @media (max-width:900px){
+      .hero{ flex-direction:column; align-items:flex-start; gap:16px; }
+      .hero-right{ width:120px; height:120px; border-radius:12px; }
+      .video-wrap{ width:100%; height:calc(100vw * 9/16); } /* 16:9 */
+    }
+    @media (max-width:480px){
+      nav a{ display:none; } /* keep header compact on small screens */
+      .brand h1{ font-size:14px; }
+    }
+
+    /* subtle focus for accessibility */
+    a:focus, button:focus{ outline:3px solid rgba(155,93,229,0.16); outline-offset:2px; }
+
+  </style>
+</head>
+<body>
+  <div class="animated-bg" aria-hidden="true"></div>
+
+  <header>
+    <div class="nav-inner">
+      <div class="brand" title="Wilson W. Wandu">
+        <img src="https://raw.githubusercontent.com/WWWandu/Wandu.github.io/main/assets/Wilson%20Passport.png" alt="Wilson W. Wandu">
+        <div style="line-height:1;">
+          <h1 style="margin:0;">Wilson W. Wandu</h1>
+          <div style="font-size:12px;color:var(--muted-2);">Tech Strategist • BI & Automation</div>
+        </div>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="hero" class="visible" aria-labelledby="hero-title" style="padding:20px;">
+      <div class="hero">
+        <div class="hero-left">
+          <div class="tagline">Tech Strategist | BI & Automation Innovator | Storytelling That Drives Action</div>
+          <h2 class="lead">👋 Hi, I'm Wilson W. Wandu</h2>
+          <p class="bio">Tech-savvy, data-driven, and curious by nature. I thrive on using BI and automation to simplify work, uncover insights, and tell data stories that inspire better decisions.</p>
+
+          <div class="cta">
+            <a class="btn" href="#projects">View Projects</a>
+            <!-- Download resume opens email -->
+            <a class="btn secondary" href="mailto:wilsonwwandu@outlook.com?subject=Resume%20Request%20-%20Wilson%20W.%20Wandu">Download Resume</a>
+          </div>
+        </div>
+
+        <div class="hero-right" aria-hidden="true">
+          <img src="https://raw.githubusercontent.com/WWWandu/Wandu.github.io/main/assets/Wilson%20Passport.png" alt="Wilson W. Wandu">
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" aria-labelledby="about-title">
+      <div class="section-title">
+        <div class="accent" aria-hidden="true"></div>
+        <h3 id="about-title">About</h3>
+      </div>
+      <p class="small">I'm a results-driven Business Analyst, BI Developer and Instructional Systems Designer with experience in banking, digital transformation, and data analytics. I specialize in Power BI development — from data modeling, DAX calculations, and ETL processes to building interactive dashboards and reports that transform raw data into actionable insights. Adept at bridging IT and business, I ensure technical solutions deliver real business value.</p>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" aria-labelledby="skills-title">
+      <div class="section-title">
+        <div class="accent" aria-hidden="true"></div>
+        <h3 id="skills-title">Skills & Tools</h3>
+      </div>
+      <div class="skills" role="list">
+        <span class="skill">Power BI</span>
+        <span class="skill">Microsoft Fabric</span>
+        <span class="skill">Data Modeling & DAX</span>
+        <span class="skill">ETL & Data Pipelines</span>
+        <span class="skill">Data Storytelling</span>
+        <span class="skill">Process Optimization</span>
+        <span class="skill">Instructional Design</span>
+        <span class="skill">Project Management</span>
+        <span class="skill">SAP (HR)</span>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" aria-labelledby="projects-title">
+      <div class="section-title">
+        <div class="accent" aria-hidden="true"></div>
+        <h3 id="projects-title">Projects Showcase</h3>
+      </div>
+
+      <div class="projects">
+        <!-- Project 1 -->
+        <article class="project" aria-labelledby="p1">
+          <div class="project-title" id="p1">Contact Centre Churn Analysis</div>
+          <p class="small">Dashboard highlighting customer churn trends in the contact center with actionable insights.</p>
+          <div class="video-wrap" style="margin-top:12px;">
+            <video controls playsinline preload="metadata" poster="">
+              <source src="https://github.com/WWWandu/Wandu.github.io/raw/main/assets/Customer%20Churn%20Rate.mp4" type="video/mp4">
+              Your browser does not support MP4 video.
+            </video>
+          </div>
+          <sub>Customer Churn Rate</sub>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project" aria-labelledby="p2">
+          <div class="project-title" id="p2">CRM Training (Instructional Design)</div>
+          <p class="small">This video demonstrates system training, instructional design, and user enablement — simplifying technical processes into clear learning content.</p>
+          <div class="video-wrap" style="margin-top:12px;">
+            <video controls playsinline preload="metadata" poster="">
+              <source src="https://github.com/WWWandu/Wandu.github.io/raw/main/assets/CRM%20Training-Cut%20Clip.mp4" type="video/mp4">
+              Your browser does not support MP4 video.
+            </video>
+          </div>
+          <sub>CRM Training</sub>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project" aria-labelledby="p3">
+          <div class="project-title" id="p3">Daraja System Training</div>
+          <p class="small">Explainer video for the Daraja system — used to improve onboarding and adoption.</p>
+          <div class="video-wrap" style="margin-top:12px;">
+            <video controls playsinline preload="metadata" poster="">
+              <source src="https://github.com/WWWandu/Wandu.github.io/raw/main/assets/Daraja%20System%20Training-%20Cut%20clip.mp4" type="video/mp4">
+              Your browser does not support MP4 video.
+            </video>
+          </div>
+          <sub>Daraja System Training</sub>
+        </article>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements" aria-labelledby="achieve-title">
+      <div class="section-title">
+        <div class="accent" aria-hidden="true"></div>
+        <h3 id="achieve-title">Achievements & Highlights</h3>
+      </div>
+      <ul class="small" style="margin:0 0 0 18px;">
+        <li>Digital Transformation @ Tambulika Sacco — boosted efficiency & customer support</li>
+        <li>System Training Library — built explainer videos for ITSM Daraja & CRM</li>
+        <li>Executive Technical Storytelling — dashboards on uptime, SLA, and KPIs for leadership</li>
+        <li>PwC Power BI Simulation — gender diversity analytics dashboards</li>
+      </ul>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" aria-labelledby="exp-title">
+      <div class="section-title">
+        <div class="accent" aria-hidden="true"></div>
+        <h3 id="exp-title">Professional Experience</h3>
+      </div>
+
+      <div class="exp-item">
+        <strong>Business Process Architect</strong> — NCBA Bank, Nairobi | <em>Oct 2025 – Present</em>
+        <div class="small">Lead end-to-end optimization of Power BI dashboards and ETL workflows, championing process improvements and automation to improve reliability and scalability.</div>
+      </div>
+
+      <div class="exp-item">
+        <strong>IT Business Analyst & Instructional Systems Designer</strong> — NCBA Bank, Nairobi | <em>Feb 2024 – Oct 2025</em>
+        <div class="small">Bridged IT and business, delivered interactive Power BI dashboards, and produced explainer videos for systems like NCBA Daraja & Microsoft CRM D365.</div>
+      </div>
+
+      <div class="exp-item">
+        <strong>Learning Analyst & Instructional Designer</strong> — NCBA Bank, Nairobi | <em>Dec 2022 – Feb 2024</em>
+      </div>
+
+      <div class="exp-item">
+        <strong>Business Analyst</strong> — Tambulika Sacco, Nairobi | <em>May 2019 – Dec 2021</em>
+        <div class="small">Spearheaded system documentation & workflows, revamping collections and boosting revenue by 30%.</div>
+      </div>
+
+      <div class="exp-item">
+        <strong>Microsoft Dynamics NAV ERP Specialist</strong> — Tambulika Sacco | <em>May 2017 – May 2018</em>
+        <div class="small">Led transformation to Dynamics NAV / Business Central, improving accuracy and efficiency.</div>
+      </div>
+
+      <div class="exp-item">
+        <strong>Other Roles</strong> — Financial Consultant & Trainer (ICEA Lion Group), Freelance Brand Creative Designer.
+      </div>
+    </section>
+
+    <!-- EDUCATION & CERTS -->
+    <section id="education" aria-labelledby="edu-title">
+      <div class="section-title">
+        <div class="accent" aria-hidden="true"></div>
+        <h3 id="edu-title">Education & Certifications</h3>
+      </div>
+
+      <div class="small" style="margin-bottom:8px;">
+        <strong>BA, Economics & Finance</strong> — Kenyatta University (2021)<br>
+        <strong>Certificate, Basics in Chinese Language & Culture</strong> — Kenyatta University (2019)
+      </div>
+
+      <div class="small">
+        <strong>Selected Certifications:</strong>
+        <ul style="margin:6px 0 0 18px;">
+          <li>Microsoft Azure AI Fundamentals</li>
+          <li>Generative AI (Microsoft & LinkedIn)</li>
+          <li>Advanced Certificate in Program & Project Management (Udemy)</li>
+          <li>Six Sigma Black Belt - Analyzing Process Flows</li>
+          <li>Microsoft Certified: Power BI Data Analyst Associate — Ongoing</li>
+          <li>ITIL Foundation</li>
+          <li>PwC Power BI Job Simulation — Sept 2024</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contact-title">
+      <div class="section-title">
+        <div class="accent" aria-hidden="true"></div>
+        <h3 id="contact-title">Contact</h3>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <strong>Email</strong>
+          <div class="small"><a href="mailto:wilsonwwandu@outlook.com" style="color:var(--muted-2);text-decoration:none;">wilsonwwandu@outlook.com</a></div>
+        </div>
+
+        <div class="contact-card">
+          <strong>Phone</strong>
+          <div class="small">+254 716 277141</div>
+        </div>
+
+        <div class="contact-card">
+          <strong>Portfolio</strong>
+          <div class="small"><a href="https://wwwandu.github.io/Wandu.github.io/" style="color:var(--muted-2);text-decoration:none;" target="_blank" rel="noopener">GitHub Pages Portfolio</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- footer -->
+  <div class="footer" role="contentinfo">
+    <div>
+      <div style="font-weight:700;margin-bottom:8px;">Let's connect</div>
+      <div style="color:var(--muted-2)">Turning data into stories that inspire action.</div>
+    </div>
+
+    <div class="stats-card">
+      <img src="https://github-readme-stats.vercel.app/api?username=WWWandu&show_icons=true&theme=dark" alt="GitHub stats for WWWandu">
+    </div>
+  </div>
+
+  <!-- back to top -->
+  <a id="backToTop" class="top-btn hide" href="#hero" aria-label="Back to top">↑ Top</a>
+
+  <script>
+    // smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        const href = this.getAttribute('href');
+        if(href.startsWith("#")){
+          const target = document.querySelector(href);
+          if(target){
+            e.preventDefault();
+            target.scrollIntoView({behavior:'smooth', block:'start'});
+            history.replaceState(null, '', href);
+          }
+        }
+      });
+    });
+
+    // Intersection Observer for section animations
+    const sections = document.querySelectorAll('main section');
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+    sections.forEach(s=>obs.observe(s));
+
+    // Back to top visibility
+    const topBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', ()=>{
+      if(window.scrollY > 400) topBtn.classList.remove('hide'); else topBtn.classList.add('hide');
+    });
+
+    // Small improvement: pause other videos when playing a video
+    document.querySelectorAll('video').forEach(video=>{
+      video.addEventListener('play', function(){
+        document.querySelectorAll('video').forEach(v=>{
+          if(v !== this && !v.paused) v.pause();
+        });
+      });
+    });
+  </script>
+</body>
+</html>
